@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin App</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app">
+    <nav class="tabs">  
+      <button class="tab-button active" data-tab="dashboard">Dashboard</button>
+      <button class="tab-button" data-tab="approvals">Approvals</button>
+      <button class="tab-button" data-tab="admin">Admin</button>
+      <button class="tab-button" data-tab="materials">Materials Log</button>
+    </nav>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="tab-content active">
+      <h2>Approved Time Entries</h2>
+      <div class="filters">
+        <label>
+          Employee:
+          <select id="employeeFilter">
+            <option value="">All</option>
+          </select>
+        </label>
+
+        <label>
+          Project:
+          <select id="projectFilter">
+            <option value="">All</option>
+          </select>
+        </label>
+        <label>
+          Time:
+          <select id="timeFilter">
+            <option value="all">All time</option>
+            <option value="week">Past week</option>
+            <option value="month">Past month</option>
+            <option value="year">Past year</option>
+            <option value="custom">Custom range</option>
+          </select>
+        </label>
+
+        <div id="customRange" style="display:none; margin-top:8px;">
+          <label>From: <input type="date" id="dateFrom"></label>
+          <label>To: <input type="date" id="dateTo"></label>
+        </div>
+      </div>
+
+      <table id="dashboardTable">
+        <thead>
+          <tr>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>Project ID</th>
+            <th>Project</th>
+            <th>Task</th>
+            <th>Time Spent</th>
+            <th>Timestamp</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Approvals -->
+    <section id="approvals" class="tab-content">
+      <h2>Pending Approvals</h2>
+      <table id="approvalsTable">
+        <thead>
+          <tr>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>Project ID</th>
+            <th>Project</th>
+            <th>Task</th>
+            <th>Time Spent</th>
+            <th>Timestamp</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Admin -->
+    <section id="admin" class="tab-content">
+      <h2>Admin Panel</h2>
+      <div id="adminAlert" class="alert" style="display:none;"></div>
+
+
+      <div class="form-section">
+        <h3>Add Employee</h3>
+        <form id="employeeForm">
+          <input type="text" id="empId" placeholder="Employee ID" required>
+          <input type="text" id="empName" placeholder="Employee Name" required>
+          <button type="submit">Add Employee</button>
+        </form>
+        <h4>Employees</h4>
+        <table id="employeeList">
+          <thead>
+            <tr>
+              <!-- <th>ID</th><th>Name</th><th>Actions</th> -->
+              <th>ID</th><th>Name</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="form-section">
+        <h3>Add Project</h3>
+        <form id="projectForm">
+          <input type="text" id="projId" placeholder="Project ID" required>
+          <input type="text" id="projName" placeholder="Project Name" required>
+          <button type="submit">Add Project</button>
+        </form>
+
+        <h4>Projects</h4>
+        <table id="projectList">
+          <thead>
+            <tr>
+              <th>Project ID</th>
+              <th>Project Name</th>
+              <th>Total Hours</th>
+              <th>Cost</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+    </section>
+
+    <!-- Materials Log Page -->
+    <section id="materials" class="tab-content">
+      <h2>Reported Materials</h2>
+
+      <div class="filters">
+        <label>
+          Show:
+          <select id="materialStatusFilter">
+            <option value="unchecked">Not Checked Off</option>
+            <option value="checked">Checked Off</option>
+          </select>
+        </label>
+      </div>
+
+      <table id="materialsTable">
+        <thead>
+          <tr>
+            <th>Employee</th>
+            <th>Project</th>
+            <th>Task</th>
+            <th>Material</th>
+            <th>Notes</th>
+            <th>Timestamp</th>
+            <th>Entered?</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+  </div>
+
+  <!-- Modal for editing -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Edit Entry</h3>
+      <form id="editForm">
+        <label for="editEmployee">Employee</label>
+        <select id="editEmployee" required></select>
+
+        <label for="editProject">Project</label>
+        <select id="editProject" required></select>
+
+        <label for="editTask">Task</label>
+        <select id="editTask" required></select>
+
+        <label for="editHours">Hours</label>
+        <input type="number" id="editHours" min="0" required>
+
+        <label for="editMinutes">Minutes</label>
+        <input type="number" id="editMinutes" min="0" max="59" required>
+
+        <label for="editTimestamp">Timestamp</label>
+        <input type="text" id="editTimestamp" required>
+
+        <!-- Material field -->
+        <label for="editMaterial">Material Used</label>
+        <select id="editMaterial"></select>
+
+        <!-- Notes -->
+        <label for="editMaterialNotes">Material Notes</label>
+        <textarea id="editMaterialNotes" rows="2" placeholder="e.g., 2x hinges, 1x primer"></textarea>
+
+
+        <button type="submit">Confirm & Approve</button>
+        <button type="button" id="deleteEntryBtn" class="danger">Reject / Delete</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- New Project Details Modal -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeProjectModal">&times;</span>
+      <h3 id="projectModalTitle">Project Details</h3>
+      <table id="projectTaskTable">
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Total Time Spent</th>
+            <th>Budgeted Hours</th>
+          </tr>
+        </thead>
+        <tbody id="modalTaskBreakdown">
+          <!-- Populated by JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

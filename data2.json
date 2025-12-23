@@ -1,0 +1,186 @@
+{
+  "employees": [
+    {
+      "id": "E001",
+      "name": "Adam"
+    },
+    {
+      "id": "E002",
+      "name": "Sarah"
+    },
+    {
+      "id": "E003",
+      "name": "Luke"
+    },
+    {
+      "id": "E004",
+      "name": "Tyler"
+    },
+    {
+      "id": "E005",
+      "name": "Akhil"
+    }
+  ],
+  "projects": [
+    {
+      "id": "P1",
+      "name": "UConn Sign",
+      "task_budgets": {
+        "T001": 40,
+        "T002": 25,
+        "T003": 0,
+        "T004": 10
+      }
+    },
+    {
+      "id": "P2",
+      "name": "Kitchen Cabinets",
+      "task_budgets": {
+        "T001": 40,
+        "T002": 25,
+        "T003": 0,
+        "T004": 10
+      }
+    },
+    {
+      "id": "P3",
+      "name": "TV Stand",
+      "task_budgets": {
+        "T001": 40,
+        "T002": 25,
+        "T003": 0,
+        "T004": 10
+      }
+    },
+    {
+      "id": "P4",
+      "name": "White House Door",
+      "task_budgets": {
+        "T001": 40,
+        "T002": 25,
+        "T003": 0,
+        "T004": 10
+      }
+    },
+    {
+      "id": "MISC",
+      "name": "Mill-Shop Time"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "MISC",
+      "name": "Mill-Shop Time"
+    },
+    {
+      "id": "M001",
+      "name": "MW - Doors"
+    },
+    {
+      "id": "M002",
+      "name": "MW - Door frames / borrowed light frames"
+    },
+    {
+      "id": "M003",
+      "name": "MW - Standing & running trim"
+    },
+    {
+      "id": "M004",
+      "name": "MW - P. Lam casework, counters, shelving"
+    },
+    {
+      "id": "M005",
+      "name": "MW - Wood casework, counters, shelving"
+    },
+    {
+      "id": "M006",
+      "name": "MW - Specialty p. lam"
+    },
+    {
+      "id": "M007",
+      "name": "MW - Specialty Wood"
+    },
+    {
+      "id": "M008",
+      "name": "MW - Wood paneling"
+    },
+    {
+      "id": "T003",
+      "name": "Painting"
+    },
+    {
+      "id": "T004",
+      "name": "Finishing"
+    }
+  ],
+  "materials": [
+    {
+      "id": "MAT001",
+      "name": "Oak Board"
+    },
+    {
+      "id": "MAT002",
+      "name": "Birch Plywood"
+    },
+    {
+      "id": "MAT003",
+      "name": "Walnut Veneer"
+    },
+    {
+      "id": "MAT004",
+      "name": "Wood Screws"
+    },
+    {
+      "id": "MAT005",
+      "name": "Hinges"
+    },
+    {
+      "id": "MAT006",
+      "name": "Dowel Pins"
+    },
+    {
+      "id": "MAT007",
+      "name": "Primer"
+    },
+    {
+      "id": "MAT008",
+      "name": "Paint (White)"
+    },
+    {
+      "id": "MAT009",
+      "name": "Stain (Walnut)"
+    },
+    {
+      "id": "MAT010",
+      "name": "Clear Coat"
+    }
+  ],
+  "time_entries": [
+    {
+      "id": 1,
+      "employee_id": "E003",
+      "project_id": "P3",
+      "task_id": "T002",
+      "minutes_spent": 120,
+      "timestamp": "2025-10-24T02:49:37.738624",
+      "approved": false,
+      "materials_used": null
+    },
+    {
+      "id": 2,
+      "employee_id": "E003",
+      "project_id": "P4",
+      "task_id": "T002",
+      "minutes_spent": 120,
+      "timestamp": "2025-10-24T02:49:51.735231",
+      "approved": false,
+      "materials_used": {
+        "material_id": "MAT002",
+        "notes": "2",
+        "reviewed": false
+      },
+      "materials_entered": false
+    }
+  ],
+  "next_entry_id": 3
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- Scroll and Search for Dropdown -->
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Time Tracking (Demo)</title>
+    <link rel="stylesheet" href="./page.css">
+  </head>
+  <body>
+    <div class="shell">
+        <!-- 📢 Message box goes here -->
+        <div class="message-box">
+          <h3 style="font-size: 30px">📢 Message from Admin</h3>
+          <p style="font-size: 20px">Happy Friday.<br>
+          Reminder Dave will be out of office Monday (10/27).</p>
+        </div>
+      <section class="card" role="region" aria-labelledby="title">
+        <h1 id="title">Time Tracking</h1>
+        <p class="subtle">Demo screen (visualization only)</p>
+
+        <form id="timeForm" novalidate>
+          <!-- Employee ID -->
+          <div class="row">
+            <label for="employee">Employee ID</label>
+            <select id="employee" name="employee" required aria-label="Employee ID">
+              <option value="" disabled selected>Select Employee</option>
+            </select>
+          </div>
+
+          <!-- Project -->
+          <div class="row">
+            <label for="project">Project (ID: Project Name)</label>
+            <select id="project" name="project" required aria-label="Project">
+              <option value="" disabled selected>Select Project</option>
+            </select>
+          </div>
+
+          <!-- Current Task -->
+          <div class="row">
+            <label for="task">Current Task</label>
+            <select id="task" name="task" aria-label="Current Task">
+              <option value="" disabled selected></option>
+            </select>
+          </div>
+
+          <!-- Time Spent -->
+          <div class="row row-span-2">
+            <label for="hours">Time Spent</label>
+            <div style="display: flex; gap: 12px;">
+              <input
+                id="hours"
+                name="hours"
+                type="number"
+                min="0"
+                step="1"
+                placeholder="Hours"
+                required
+                aria-label="Hours"
+                style="width: 50%;"
+              />
+              <input
+                id="minutes"
+                name="minutes"
+                type="number"
+                min="0"
+                max="59"
+                step="1"
+                placeholder="Minutes"
+                required
+                aria-label="Minutes"
+                style="width: 50%;"
+              />
+            </div>
+            <div class="field-note">Enter whole numbers only. Minutes must be between 0–59.</div>
+            <div id="timeError" class="error" role="alert">Please enter a valid time.</div>
+          </div>
+
+          <!-- Materials toggle -->
+          <div class="row row-span-2">
+            <label class="checkbox-inline">
+              <input type="checkbox" id="materialsToggle" />
+              Materials needed to be reported
+            </label>
+          </div>
+
+          <!-- Materials fields (hidden until toggled) -->
+          <div id="materialsFields" style="display: none;">
+            <div class="row">
+              <label for="materialSelect">Material</label>
+              <select id="materialSelect" name="materialSelect" aria-label="Material">
+                <!-- options filled by page.js -->
+              </select>
+            </div>
+
+            <div class="row">
+              <label for="materialNotes">Notes</label>
+              <textarea id="materialNotes" rows="2" placeholder="e.g., 6x oak boards, 2x hinges, etc."></textarea>
+            </div>
+          </div>
+
+
+
+
+
+
+          <!-- Submit -->
+          <div class="row row-span-2 actions">
+            <button type="submit" id="submitBtn">SUBMIT</button>
+            <span class="status" id="statusText" aria-live="polite"></span>
+          </div>
+        </form>
+
+      </section>
+    </div>
+    <script src="./page.js"></script>
+
+    <!-- Scroll and Search for Dropdown -->
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+
+  </body>
+</html>

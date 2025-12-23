@@ -1,0 +1,207 @@
+:root {
+ --bg: #0b0f14;
+ --card: #121821;
+ --ink: #e8eef7;
+ --muted: #a9b5c6;
+ --accent: #4da3ff;
+ --accent-pressed: #2d8af0;
+ --error: #ff6b6b;
+ --ok: #4caf50;
+ --radius: 18px;
+ }
+ 
+ html, body {
+ height: 100%;
+ background: #a9b5c6;
+ color: var(--ink);
+ font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+ margin: 0;
+ }
+ 
+ .shell {
+ min-height: 100%;
+ display: grid;
+ place-items: center;
+ padding: 32px 20px;
+ }
+ 
+ /* Tablet-first card width */
+ .card {
+ width: min(720px, 92vw);
+ background: #5c6066;
+ border: 1px solid rgba(255,255,255,0.06);
+ box-shadow: 0 20px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04);
+ border-radius: var(--radius);
+ padding: 28px;
+ }
+ 
+ h1 {
+ margin: 0 0 18px 0;
+ font-size: clamp(22px, 3.2vw, 28px);
+ letter-spacing: 0.3px;
+ }
+ 
+ .subtle {
+ color: var(--muted);
+ font-size: 14px;
+ margin-bottom: 22px;
+ }
+ 
+ form {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 18px 16px;
+ }
+ 
+ .row-span-2 { grid-column: span 2; }
+ 
+ label {
+ display: block;
+ font-size: 13px;
+ color: var(--muted);
+ margin-bottom: 8px;
+ }
+ 
+select,
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  font-size: 16px;
+  padding: 14px 12px;
+  color: var(--ink);
+  background: #0f1520;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  -webkit-appearance: none;
+}
+
+ 
+ select:focus, input[type="text"]:focus {
+ border-color: var(--accent);
+ box-shadow: 0 0 0 3px rgba(77, 163, 255, 0.25);
+ }
+ 
+ .field-note {
+ font-size: 12px;
+ color: var(--muted);
+ margin-top: 6px;
+ }
+ 
+ .error {
+ color: var(--error);
+ font-size: 13px;
+ margin-top: 8px;
+ display: none;
+ }
+ 
+ .actions {
+ display: flex;
+ gap: 12px;
+ align-items: center;
+ margin-top: 6px;
+ }
+ 
+ button[type="submit"] {
+ appearance: none;
+ border: none;
+ padding: 14px 18px;
+ font-size: 16px;
+ font-weight: 600;
+ color: white;
+ background: linear-gradient(180deg, var(--accent), var(--accent-pressed));
+ border-radius: 12px;
+ cursor: pointer;
+ box-shadow: 0 8px 24px rgba(77, 163, 255, 0.35);
+ transition: transform 0.05s ease, filter 0.2s ease, box-shadow 0.2s ease;
+ }
+ 
+ button[type="submit"]:active { transform: translateY(1px); }
+ 
+ .status {
+ font-size: 14px;
+ color: var(--muted);
+ }
+ 
+ footer {
+ margin-top: 24px;
+ text-align: center;
+ color: var(--muted);
+ font-size: 13px;
+ }
+ 
+ /* Smaller phones still render nicely */
+ @media (max-width: 560px) {
+ form { grid-template-columns: 1fr; }
+ .row-span-2 { grid-column: span 1; }
+ }
+
+ .checkbox-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  font-size: 16px;
+  padding: 14px 12px;
+  color: var(--ink);
+  background: #0f1520;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  outline: none;
+  resize: vertical;
+}
+
+/* Match Tom Select input styling to other inputs */
+.ts-control {
+  background-color: #0f1520 !important;
+  color: var(--ink) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 12px !important;
+  font-size: 16px;
+  padding: 14px 12px;
+}
+
+/* Focus state matches native input */
+.ts-control.focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(77, 163, 255, 0.25);
+}
+
+/* Placeholder text */
+.ts-control .item.placeholder {
+  color: var(--muted) !important;
+}
+
+/* Match dropdown list styling */
+.ts-dropdown {
+  background-color: #0f1520 !important;
+  color: var(--ink) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 10px !important;
+  max-height: 200px;
+  font-size: 15px;
+  padding: 0;
+}
+
+/* Highlighted item in dropdown */
+.ts-dropdown .active {
+  background-color: var(--accent) !important;
+  color: #fff !important;
+}
+
+/* Search box inside dropdown */
+.ts-dropdown .ts-input {
+  padding: 12px;
+  background-color: #0f1520;
+  color: var(--ink);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 15px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}

@@ -1,0 +1,272 @@
+/* === Admin App — Match Time Tracking Look === */
+:root {
+  --bg: #0b0f14;           /* kept for consistency, but page bg matches Time Tracking */
+  --card: #5c6066;         /* same card color as Time Tracking */
+  --ink: #e8eef7;
+  --muted: #a9b5c6;
+  --accent: #4da3ff;
+  --accent-pressed: #2d8af0;
+  --error: #ff6b6b;
+  --ok: #4caf50;
+  --radius: 18px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: #a9b5c6;     /* same page background as Time Tracking */
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+/* --- Tabs --- */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 12px 14px;
+  font-size: 15px;
+  color: var(--ink);
+  background: #0f1520;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: filter .2s, transform .05s, background .2s;
+}
+
+.tab-button:hover { filter: brightness(1.1); }
+.tab-button:active { transform: translateY(1px); }
+
+.tab-button.active {
+  background: linear-gradient(180deg, var(--accent), var(--accent-pressed));
+  color: #fff;
+  border: none;
+  box-shadow: 0 8px 24px rgba(77,163,255,.35);
+}
+
+/* --- Card-like sections (match Time Tracking .card) --- */
+.tab-content {
+  display: none;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.tab-content.active { display: block; }
+
+h2, h3, h4 {
+  margin: 0 0 16px;
+  color: var(--ink);
+}
+.subtle { color: var(--muted); }
+
+/* --- Tables --- */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 12px;
+  background: #0f1520;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+thead th {
+  text-align: left;
+  font-size: 14px;
+  color: var(--muted);
+  background: #121926;
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+tbody td {
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+tbody tr:hover { background: rgba(255,255,255,0.04); }
+
+/* --- Buttons --- */
+button {
+  appearance: none;
+  border: none;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(180deg, var(--accent), var(--accent-pressed));
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(77,163,255,0.35);
+  transition: transform .05s ease, filter .2s ease, box-shadow .2s ease;
+}
+button:hover { filter: brightness(1.05); }
+button:active { transform: translateY(1px); }
+button:disabled { background: #424a57; box-shadow: none; cursor: not-allowed; }
+
+/* --- Forms (Admin panels) --- */
+.form-section {
+  margin-bottom: 20px;
+  padding: 18px;
+  background: #0f1520;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+}
+
+.form-section h3, .form-section h4 {
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+
+.form-section input,
+.form-section select {
+  width: 100%;
+  font-size: 16px;
+  padding: 14px 12px;
+  color: var(--ink);
+  background: #0f1520;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-section input:focus,
+.form-section select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(77,163,255,0.25);
+}
+
+.form-section button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* --- Modal (Edit) --- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04);
+  border-radius: var(--radius);
+  width: min(480px, 92vw);
+  margin: 10% auto;
+  padding: 22px;
+  color: var(--ink);
+}
+
+.modal-content label {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 10px;
+  color: var(--ink);
+  background: #0f1520;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color .15s, box-shadow .15s;
+  margin-top: 4px;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(77,163,255,0.25);
+}
+
+.modal-content button { width: 100%; margin-top: 14px; }
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--muted);
+}
+.close:hover { color: var(--error); }
+
+/* --- Small screens --- */
+@media (max-width: 560px) {
+  .tabs { flex-direction: column; }
+}
+
+.alert {
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.alert--error { background: var(--error); }
+.alert--success { background: var(--ok); }
+
+/* HIDES DELETE BUTTON FOR EMPLPOYEES */
+#employeeList button {
+  display: none;
+}
+
+
+#editForm button {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+#editForm button:not(.danger) {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+#editForm button:not(.danger):hover {
+  background-color: var(--accent-pressed);
+}
+
+#editForm button.danger {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+#editForm button.danger:hover {
+  background-color: #c9302c;
+}
+
+#projectModal .modal-content {
+  width: 500px;
+  max-width: 90%;
+}
