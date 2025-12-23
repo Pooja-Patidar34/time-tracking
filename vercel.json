@@ -1,8 +1,0 @@
-{
-  "routes": [
-    { "src": "^/$", "dest": "/Admin_App/index.html" },
-    { "src": "^/admin$", "dest": "/Admin_App/index.html" },
-    { "src": "^/time-tracking$", "dest": "/Time-tracking/index.html" }
-  ]
-}
-
